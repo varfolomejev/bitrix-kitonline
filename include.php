@@ -1,5 +1,4 @@
 <?php
-
 IncludeModuleLangFile(__FILE__);
 
 define('VARFOLOMEJEV_KITONLINE_MODULE_PATH', dirname(__FILE__));
@@ -8,11 +7,8 @@ define('VARFOLOMEJEV_KITONLINE_MODULE_RELATIVE_PATH', str_replace($_SERVER['DOCU
 CModule::AddAutoloadClasses(
 	'varfolomejev.kitonline',
 	array(
-		"VEvent" => "lib/events/VEvent.php",
-		'\Varfolomejev\Sale\Kitonline' => '/lib/kitonline.php',
+		'\Varfolomejev\Sale\events\VEvent' => "lib/events/VEvent.php",
+		'\Varfolomejev\Sale\Kitonline' => '/lib/Kitonline.php',
+		'\Varfolomejev\Sale\KitOnlineService' => '/lib/KitOnlineService.php',
 	)
 );
-
-//var_dump(
-//	class_exists('\Varfolomejev\Sale\Kitonline')
-//);exit;

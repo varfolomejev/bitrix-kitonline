@@ -35,33 +35,41 @@ Class varfolomejev_kitonline extends CModule
 	function InstallDB($install_wizard = true)
 	{
 		global $DB, $DBType, $APPLICATION;
-
-		RegisterModule("varfolomejev.kitonline");
-
+		RegisterModule($this->MODULE_ID);
+		CAgent::AddAgent(
+			'\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();',
+			$this->MODULE_ID,
+			"Y",
+			30,
+			"",
+			"Y",
+			"",
+			30);
 		return true;
 	}
 
 	function UnInstallDB($arParams = Array())
 	{
 		global $DB, $DBType, $APPLICATION;
-		UnRegisterModule("varfolomejev.kitonline");
-
+		UnRegisterModule($this->MODULE_ID);
+		CAgent::RemoveAgent(
+			'\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();',
+			$this->MODULE_ID
+		);
 		return true;
 	}
 
 	function InstallEvents()
 	{
-		RegisterModuleDependences("main", "OnBeforeProlog", "varfolomejev.kitonline", "VEvent", 'registerKitOnlineModule');
-
-		RegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "varfolomejev.kitonline", "VEvent", 'registerKitOnlineCashbox');
+		RegisterModuleDependences("main", "OnBeforeProlog", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();', 'registerKitOnlineModule');
+		RegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();', 'registerKitOnlineCashbox');
 		return true;
 	}
 
 	function UnInstallEvents()
 	{
-		UnRegisterModuleDependences("main", "OnBeforeProlog", "varfolomejev.kitonline", "VEvent", 'registerKitOnlineModule');
-
-		UnRegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "varfolomejev.kitonline", "VEvent", 'registerKitOnlineCashbox');
+		UnRegisterModuleDependences("main", "OnBeforeProlog", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();', 'registerKitOnlineModule');
+		UnRegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();', 'registerKitOnlineCashbox');
 		return true;
 	}
 
