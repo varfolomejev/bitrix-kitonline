@@ -2,12 +2,10 @@
 
 namespace Varfolomejev\Sale;
 
-use function array_merge;
 use Bitrix\Main;
 use Bitrix\Main\Localization;
 use Bitrix\Sale\Cashbox\Cashbox;
 use Bitrix\Sale\Cashbox\Check;
-use Bitrix\Sale\Cashbox\CheckManager;
 use Bitrix\Sale\Cashbox\IPrintImmediately;
 use Bitrix\Sale\Cashbox\SellCheck;
 use Bitrix\Sale\Cashbox\SellReturnCashCheck;
@@ -15,8 +13,6 @@ use Bitrix\Sale\Cashbox\SellReturnCheck;
 use Bitrix\Sale\Result;
 use Bitrix\Sale\Cashbox\Errors\Warning;
 use Bitrix\Sale\Cashbox\Errors\Error;
-use function dirname;
-use function file_put_contents;
 
 Localization\Loc::loadMessages(__FILE__);
 
@@ -78,7 +74,7 @@ class Kitonline extends Cashbox implements IPrintImmediately
 		if($response['CheckState']['ResultCode'] != 0 || $response['CheckState']['State'] != 1000){
 			$result['ERROR'] = array(
 				'CODE' => $response['CheckState']['ResultCode'] ? $response['CheckState']['ResultCode'] : $response['CheckState']['State'],
-				'MESSAGE' => Localization\Loc::getMessage('VARFOLOMEJEV_KITONLINE_API_SERVER_CHEÑK_STATE_ERROR'),
+				'MESSAGE' => Localization\Loc::getMessage('VARFOLOMEJEV_KITONLINE_API_SERVER_CHEï¿½K_STATE_ERROR'),
 				'TYPE' => Error::TYPE
 			);
 			return $result;

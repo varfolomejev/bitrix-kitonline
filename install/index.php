@@ -37,7 +37,7 @@ Class varfolomejev_kitonline extends CModule
 		global $DB, $DBType, $APPLICATION;
 		RegisterModule($this->MODULE_ID);
 		CAgent::AddAgent(
-			'\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();',
+            'KitOnlineCron::checkCashBoxCheck();',
 			$this->MODULE_ID,
 			"Y",
 			30,
@@ -53,7 +53,7 @@ Class varfolomejev_kitonline extends CModule
 		global $DB, $DBType, $APPLICATION;
 		UnRegisterModule($this->MODULE_ID);
 		CAgent::RemoveAgent(
-			'\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();',
+		    'KitOnlineCron::checkCashBoxCheck();',
 			$this->MODULE_ID
 		);
 		return true;
@@ -61,15 +61,15 @@ Class varfolomejev_kitonline extends CModule
 
 	function InstallEvents()
 	{
-		RegisterModuleDependences("main", "OnBeforeProlog", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();', 'registerKitOnlineModule');
-		RegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();', 'registerKitOnlineCashbox');
+		RegisterModuleDependences("main", "OnBeforeProlog", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineModule');
+		RegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineCashbox');
 		return true;
 	}
 
 	function UnInstallEvents()
 	{
-		UnRegisterModuleDependences("main", "OnBeforeProlog", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();', 'registerKitOnlineModule');
-		UnRegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent::checkCashBoxCheck();', 'registerKitOnlineCashbox');
+		UnRegisterModuleDependences("main", "OnBeforeProlog", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineModule');
+		UnRegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineCashbox');
 		return true;
 	}
 

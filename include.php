@@ -10,5 +10,6 @@ CModule::AddAutoloadClasses(
 		'\Varfolomejev\Sale\events\VEvent' => "lib/events/VEvent.php",
 		'\Varfolomejev\Sale\Kitonline' => '/lib/Kitonline.php',
 		'\Varfolomejev\Sale\KitOnlineService' => '/lib/KitOnlineService.php',
+        'KitOnlineCron' => '/lib/KitOnlineCron.php',
 	)
 );

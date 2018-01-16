@@ -26,7 +26,7 @@ class KitOnlineService
 		foreach ($data['items'] as $i => $item)
 		{
 			$subjects[] = array(
-				"Price" => (float)$item['price'],
+				"Price" => $this->toPenies($item['price']),
 				"Quantity" => $item['quantity'],
 				"SubjectName" => mb_convert_encoding($item['name'], 'UTF-8'),
 				"Tax" => (int)$tax,
@@ -38,16 +38,15 @@ class KitOnlineService
 			"Check" => array(
 				"CheckId" => "100" . $data['unique_id'],
 				"CalculationType" => $checkType,
-				"Sum" => (float)$data['total_sum'],
+				"Sum" => $this->toPenies($data['total_sum']),
 				"Email" => $data['client_email'],
 				"TaxSystemType" => (int)$kitonline->getValueFromSettings('AUTH', 'TAX_SYSTEM_TYPE'),
 				"Pay" => array(
-					"CashSum" => (float)$data['total_sum'],
+					"EMoneySum" => $this->toPenies($data['total_sum']),
 				),
 				"Subjects" => $subjects
 			)
 		);
-
 		return $request;
 	}
 
@@ -68,7 +67,8 @@ class KitOnlineService
 			"RequestId" => (int)$requestId,
 			"CompanyId" => (int)$companyId,
 			"UserLogin" => $kitonline->getValueFromSettings('AUTH', 'LOGIN'),
-			"Sign" => md5($companyId . $password . $requestId)
+			"Sign" => md5($companyId . $password . $requestId),
+            "RequestSource" => "1РЎ-Р‘РёС‚СЂРёРєСЃ"
 		);
 	}
 
@@ -76,92 +76,9 @@ class KitOnlineService
 	{
 		return (int)date('YmdHis');
 	}
+
+	private function toPenies($sum)
+    {
+        return (float)$sum * 100;
+    }
 }
-
-/*
-class kitonline {
-	public function getValueFromSettings($type, $key)
-	{
-		$data = [
-			'COMPANY_ID' => 1,
-			'LOGIN' => 'bot0111',
-			'PASSWORD' => 'bot01112017',
-			'TAX_SYSTEM_TYPE' => 1,
-			'TAX' => 1,
-		];
-		return $data[$key];
-	}
-
-	public function getCheckTypeMap()
-	{
-		return array(
-			'sell' => 1,
-		);
-	}
-}
-
-class check {
-	public static function getType()
-	{
-		return 'sell';
-	}
-}
-*/
-
-//$class = new KitOnlineService();
-
-/*
-$results = $class->prepareCheckRequest(array(
-	'type' => 'sell',
-	'unique_id' => 1000003,
-	'items' => array(
-		array(
-			'name' => 'Туфли Ультра Лайн',
-			'base_price' => 236,
-			'price' => 236,
-			'sum' => 236,
-			'quantity' => 1,
-			'vat' => 2
-		),
-		array(
-			'name' => 'Штаны Цветочная Поляна',
-			'base_price' => 100,
-			'price' => 100,
-			'sum' => 100,
-			'quantity' => 1,
-			'vat' => 1
-		),
-		array(
-			'name' => 'Доставка',
-			'base_price' => 0,
-			'price' => 0,
-			'sum' => 0,
-			'quantity' => 1,
-			'vat' => 0
-		),
-	),
-	//'date_create' => new DateTime('2017-12-31 14:33:33.000000'),
-	'payments' => array(
-		array(
-			'is_cash' => 'N',
-			'sum' => 336
-		)
-	),
-	'client_email' => 'test@te.te',
-	'client_phone' => '123132165',
-	'total_sum' => 336
-), new kitonline(), new check());
-*/
-
-/*
-$results = $class->prepareCheckStateRequest(array('kit_online_check_queue_id' => 2714), new kitonline());
-*/
-
-/*
-echo PHP_EOL;
-echo json_encode($results);
-//echo json_last_error_msg();
-//print_r($results);
-echo PHP_EOL;
-exit;
-*/

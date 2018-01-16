@@ -1,3 +1,2 @@
 <?
 $MESS ['VARFOLOMEJEV_KITONLINE_MODULE_ACTIVATED'] = "Модуль активирован";
- 
