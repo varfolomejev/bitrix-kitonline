@@ -1,0 +1,2 @@
+<?php
+$MESS ['VARFOLOMEJEV_KITONLINE_MODULE_BITRIX'] = '1С-Битрикс';

@@ -2,10 +2,7 @@
 
 namespace Varfolomejev\Sale;
 
-use function md5;
-use const PHP_INT_MAX;
-use function rand;
-use function time;
+IncludeModuleLangFile(__FILE__);
 
 class KitOnlineService
 {
@@ -28,7 +25,7 @@ class KitOnlineService
 			$subjects[] = array(
 				"Price" => $this->toPenies($item['price']),
 				"Quantity" => $item['quantity'],
-				"SubjectName" => mb_convert_encoding($item['name'], 'UTF-8'),
+				"SubjectName" => $item['name'],
 				"Tax" => (int)$tax,
 			);
 		}
@@ -68,7 +65,7 @@ class KitOnlineService
 			"CompanyId" => (int)$companyId,
 			"UserLogin" => $kitonline->getValueFromSettings('AUTH', 'LOGIN'),
 			"Sign" => md5($companyId . $password . $requestId),
-            "RequestSource" => "1С-Битрикс"
+            "RequestSource" => GetMessage("VARFOLOMEJEV_KITONLINE_MODULE_BITRIX")
 		);
 	}
 
