@@ -5,7 +5,7 @@ define('VARFOLOMEJEV_KITONLINE_MODULE_PATH', dirname(__FILE__));
 define('VARFOLOMEJEV_KITONLINE_MODULE_RELATIVE_PATH', str_replace($_SERVER['DOCUMENT_ROOT'], '', VARFOLOMEJEV_KITONLINE_MODULE_PATH));
 
 CModule::AddAutoloadClasses(
-	'varfolomejev.kitonline',
+	'kitinvest.kitonline',
 	array(
 		'\Varfolomejev\Sale\events\VEvent' => "lib/events/VEvent.php",
 		'\Varfolomejev\Sale\Kitonline' => '/lib/Kitonline.php',

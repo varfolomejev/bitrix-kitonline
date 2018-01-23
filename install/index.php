@@ -5,16 +5,16 @@ $strPath2Lang = str_replace("\\", "/", __FILE__);
 $strPath2Lang = substr($strPath2Lang, 0, strlen($strPath2Lang)-strlen("/install/index.php"));
 include(GetLangFileName($strPath2Lang."/lang/", "/install/index.php"));
 */
-Class varfolomejev_kitonline extends CModule
+Class kitinvest_kitonline extends CModule
 {
-	public $MODULE_ID = "varfolomejev.kitonline";
+	public $MODULE_ID = "kitinvest.kitonline";
 	public $MODULE_VERSION;
 	public $MODULE_VERSION_DATE;
 	public $MODULE_NAME;
 	public $MODULE_DESCRIPTION;
 	public $MODULE_CSS;
 
-	public function varfolomejev_kitonline()
+	public function kitinvest_kitonline()
 	{
 		$arModuleVersion = array();
 		$path = str_replace("\\", "/", __FILE__);
@@ -61,15 +61,15 @@ Class varfolomejev_kitonline extends CModule
 
 	function InstallEvents()
 	{
-		RegisterModuleDependences("main", "OnBeforeProlog", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineModule');
-		RegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineCashbox');
+		RegisterModuleDependences("main", "OnBeforeProlog", "kitinvest.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineModule');
+		RegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "kitinvest.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineCashbox');
 		return true;
 	}
 
 	function UnInstallEvents()
 	{
-		UnRegisterModuleDependences("main", "OnBeforeProlog", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineModule');
-		UnRegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "varfolomejev.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineCashbox');
+		UnRegisterModuleDependences("main", "OnBeforeProlog", "kitinvest.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineModule');
+		UnRegisterModuleDependences("sale", "OnGetCustomCashboxHandlers", "kitinvest.kitonline", '\Varfolomejev\Sale\events\VEvent', 'registerKitOnlineCashbox');
 		return true;
 	}
 
@@ -96,7 +96,7 @@ Class varfolomejev_kitonline extends CModule
 		$this->InstallEvents();
 		$this->InstallPublic();
 
-		$APPLICATION->IncludeAdminFile(GetMessage("VARFOLOMEJEV_KITONLINE_INSTALL_TITLE"), $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/varfolomejev.kitonline/install/step.php");
+		$APPLICATION->IncludeAdminFile(GetMessage("VARFOLOMEJEV_KITONLINE_INSTALL_TITLE"), $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/kitinvest.kitonline/install/step.php");
 		return true;
 	}
 
@@ -107,7 +107,7 @@ Class varfolomejev_kitonline extends CModule
 		$this->UnInstallDB();
 		$this->UnInstallFiles();
 		$this->UnInstallEvents();
-		$APPLICATION->IncludeAdminFile(GetMessage("VARFOLOMEJEV_KITONLINE_UNINSTALL_TITLE"), $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/varfolomejev.kitonline/install/unstep.php");
+		$APPLICATION->IncludeAdminFile(GetMessage("VARFOLOMEJEV_KITONLINE_UNINSTALL_TITLE"), $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/kitinvest.kitonline/install/unstep.php");
 		return true;
 	}
 

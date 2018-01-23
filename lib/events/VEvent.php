@@ -9,7 +9,7 @@ class VEvent {
 	 */
 	public static function registerKitOnlineModule()
 	{
-		\Bitrix\Main\Loader::includeModule('varfolomejev.kitonline');
+		\Bitrix\Main\Loader::includeModule('kitinvest.kitonline');
 	}
 
 	/**
