@@ -226,7 +226,7 @@ class Kitonline extends Cashbox implements IPrintImmediately
 	 * @param $data
 	 * @return Result
 	 */
-	public static function validateSettings($data)
+	public static function validateFields($data)
 	{
 		$result = new Result();
 
